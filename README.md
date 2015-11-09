@@ -9,7 +9,7 @@ This project will be used for me to explore some new technologies and hopefully 
 * Built with Gradle
 * Angular 2/ES6/Typescript Front End
 * Twitter Bootstrap styling
-* Built with Grunt, manage libs with Bower
+* Built with Gulp, manage libs with Bower
 
 ## Features with proposed release plan
 
