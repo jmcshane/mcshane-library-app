@@ -6,9 +6,11 @@ var gulp = require('gulp'),
     typescript = require('typescript'),
     plumber = require('gulp-plumber'),
     del = require('del'),
+    concat = require('gulp-concat'),
     runSequence = require('run-sequence'),
     rename = require('gulp-rename'),
     Config = require('./gulpfile.config'),
+    jade = require('gulp-jade'),
     config = new Config();
 
 gulp.task('ts-lint', function () {
@@ -57,6 +59,7 @@ gulp.task('styles', function () {
 
 gulp.task('copy-lib', function () {
    return gulp.src(config.allLib)
+   	   .pipe(concat('lib.js'))
        .pipe(gulp.dest(config.dest + config.outputLibDir));
 });
 
@@ -65,17 +68,30 @@ gulp.task('copy-html', function () {
         .pipe(gulp.dest(config.dest));
 });
 
+gulp.task('compile-jade', function() {
+	var LOCALS = {
+		pageTitle : "McShane Library"
+	}
+	return gulp.src(config.allJade)
+		.pipe(jade({
+			locals: LOCALS
+		}))
+		.pipe(gulp.dest(config.dest));
+});
+
 gulp.task('watch', function() {
     gulp.watch([config.allTypeScript], ['ts-lint', 'compile-ts']);
     gulp.watch([config.allLess], ['styles']);
     gulp.watch([config.allHTML], ['copy-html']);
+    gulp.watch([config.allJade], ['compile-jade']);
+    gulp.watch(['gulpfile.js','gulpfile.config.js'], ['default'])
 });
 
 gulp.task('default', function() {
 	runSequence(
 		'ts-lint',
 		'compile-ts',
-		['copy-lib', 'copy-html', 'styles'],
+		['copy-lib', 'copy-html', 'styles', 'compile-jade'],
 		'watch'
 	);
 })

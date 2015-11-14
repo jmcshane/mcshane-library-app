@@ -17,8 +17,14 @@ var GulpConfig = (function () {
         ];
         this.allLess = this.src + '/**/*.less';
         this.allTypeScript = this.src + '/**/*.ts';
+        this.allJade =  [
+            this.src + '/*.jade',
+            this.src + '/**/*.jade'
+        ]
         this.allLib = [
-            'src/main/webapp/bower_components/traceur-runtime/traceur-runtime.js'
+            'src/main/webapp/bower_components/jquery/dist/jquery.js',
+            'src/main/webapp/bower_components/traceur-runtime/traceur-runtime.js',
+            'src/main/webapp/bower_components/bootstrap/dist/js/bootstrap.js'
         ];
 
         this.libraryTypeScriptDefinitions = this.typingsDir + '/**/*.ts';

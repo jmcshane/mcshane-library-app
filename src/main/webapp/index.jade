@@ -1,0 +1,17 @@
+doctype html
+html
+   head
+      title=pageTitle
+      link(rel='stylesheet', type='text/css', href='css/library.css')
+
+   body
+      include ./views/partials/header.jade
+      app Library Initializing...
+
+      script(src='lib/lib.js')
+      script(src='https://jspm.io/system@0.16.js')
+      script(src='https://code.angularjs.org/2.0.0-alpha.27/angular2.dev.js')
+      script(src='https://code.angularjs.org/2.0.0-alpha.27/router.dev.js')
+      script(type='text/javascript').
+         System.import('app/app');
+         System.import('app/loginModule');

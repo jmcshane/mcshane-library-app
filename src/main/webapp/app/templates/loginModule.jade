@@ -1,0 +1,7 @@
+ul.nav.navbar-nav.navbar-right
+	li([style.display]='authenticated ? "none" : "inherit"')
+		a(href='#') Login
+	li([style.display]='authenticated ? "inherit" : "none"')
+		span Welcome {{username}}. Authenticated is {{authenticated.toString()}}
+	li([style.display]='authenticated ? "inherit" : "none"')
+		a(href='#') Logout
